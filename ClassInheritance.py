@@ -11,43 +11,44 @@ class Person:
   def printname(self):
     print(self.firstname, self.lastname)
 
-class Joseph:
+class Senior(Person):
     """This class creates a joseph object """ # Method description
-    def __init__(self, age, name, employed: bool = False, wage="$0"):
+    def __init__(self,fname, lname, age, employed: bool = False, wage="$0"):
+        super().__init__(fname, lname)
         self.age = age
         self.employed = employed
         self.wage = wage
-        self.name = name
 
+    def displayStatus(self):
+        print("Here are my stats: ",
+        self.age,"Age",
+        self.wage, "Wage",
+        self.employed, "Employed")
 
-    def display(self):
-        print("This is from Class Joseph",
-        self.age,
-        self.wage,
-        self.employed,
-        self.name)
-
-    def play(self):
-        print("Play CS")
+    def hobbies(self):
+        print("Play CS:GO")
 
     def job(self):
-        print("Make Money at my job", )
+        print("Make Money by working at Cold Stone", )
 
 
-class Nick(Joseph):
+class Junior(Senior):
     """This class creates a 'Nick' object """
-    def __init__(self, age, employed, wage, name, allowance="$0"):
-        super().__init__(age, employed, name, wage="0")
+    def __init__(self, fname: str, lname: str, age: str, employed: bool, wage="$0", allowance="$0"):
+        Person.__init__(self, fname, lname)
+        Senior.__init__(self, age, employed, wage)
         self.allowance = allowance
 
-    def display(self): # 'age' is a parameter of the display method
-        print("This is from Class Nick", self.age)
-
-    def play(self):
+    def hobbies(self):
         print("Play Rust")
 
     def job(self):
         print("I'm not working, I get an allowance of ", self.allowance)
+
+    def chores(self):
+        print("I did the dishes")
+        choresComplete = True
+        return choresComplete
 
 
 def playGame(someObject):
@@ -55,13 +56,17 @@ def playGame(someObject):
 
 # main
 
-donte = Person("Donte", "Jones")
-donte.printname()
+# Create an instance of a Senior Object
+person0= Senior("Donte", "Jones", "18", True, "$6.25")
+person0.displayStatus()
+person0.printname()
 
-person2 = Joseph(age=18, name="Joseph", wage="$13", employed=True)
-person3 = Nick(wage="13", employed=False, name="Nick", age="17")
-person2.display()
-person3.display()
+person2= Junior("Tony", "Stark", 38, True, "$1B")
+person2.displayStatus()
+
+#person3 = Junior(employed=False, name="Nick", age="17")
+# person2.displayStatus()
+# person3.displayStatus()
 
 
 #joseph1 = Joseph("18", True, "$13", "Joseph")  # Instantiates a Joseph Object Named 'joseph1'
